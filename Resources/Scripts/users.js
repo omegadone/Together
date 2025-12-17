@@ -1,6 +1,7 @@
 // Global state
 let userDatabase = [];
 
+
 // 1. Fetch the user data on load
 async function loadUserData() {
     try {
