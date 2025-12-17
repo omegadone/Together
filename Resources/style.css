@@ -129,3 +129,46 @@ button {
     margin-bottom: 1rem;
     cursor: pointer;
 }
+/* CRM Customer List Container */
+#crm-content {
+    height: 500px;            /* Fixed height as requested */
+    overflow-y: auto;         /* Show scrollbar only when needed */
+    padding-right: 10px;      /* Gap so scrollbar doesn't overlap cards */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;               /* Space between cards */
+}
+
+/* Custom Scrollbar Styling (Webkit) */
+#crm-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#crm-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#crm-content::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* Ensure cards have enough height to trigger the scroll after ~3 clients */
+.crm-customer-card {
+    min-height: 120px;       /* 3.5 cards will now exceed 500px */
+    flex-shrink: 0;          /* Prevents cards from squishing to fit */
+    background: var(--white);
+    border-left: 5px solid var(--accent);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.crm-customer-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-3d);
+}
