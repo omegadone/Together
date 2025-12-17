@@ -61,4 +61,31 @@ window.onload = () => {
     });
 };
 
-// ... keep logout and navigation logic from previous version
+// Add this to the bottom of users.js
+function initAppListeners() {
+    const logoutBtn = document.getElementById('logout-btn');
+    
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            console.log("Logout sequence initiated...");
+            
+            // 1. Clear the session
+            sessionStorage.removeItem('session');
+            
+            // 2. Force a reload to reset the UI state
+            window.location.reload();
+        });
+    } else {
+        console.error("Logout button not found in DOM");
+    }
+}
+
+// Update your window.onload to include the listeners
+window.onload = () => {
+    loadUserData().then(() => {
+        initAppListeners(); // Initialize buttons
+        if (sessionStorage.getItem('session')) {
+            startApp();
+        }
+    });
+};
