@@ -1,0 +1,38 @@
+{
+  "businesses": [
+    {
+      "id": "biz_001",
+      "name": "Nexus Tech Solutions",
+      "address": "123 Innovation Way, Neo City",
+      "industry": "Software Development"
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust_101",
+      "businessId": "biz_001",
+      "name": "Alice Wonderland",
+      "email": "alice@nexus.com",
+      "phone": "555-0101",
+      "orderHistory": [
+        { "orderId": "ORD-99", "date": "2023-10-01", "amount": 1200.00, "status": "Shipped" }
+      ],
+      "commHistory": [
+        { "date": "2023-10-05", "type": "Email", "notes": "Inquired about bulk pricing." }
+      ]
+    },
+    {
+      "id": "cust_102",
+      "businessId": "biz_001",
+      "name": "Bob Builder",
+      "email": "bob@nexus.com",
+      "phone": "555-0102",
+      "orderHistory": [
+        { "orderId": "ORD-102", "date": "2023-11-12", "amount": 450.00, "status": "Pending" }
+      ],
+      "commHistory": [
+        { "date": "2023-11-13", "type": "Call", "notes": "Follow-up on pending shipment." }
+      ]
+    }
+  ]
+}

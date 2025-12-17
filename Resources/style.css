@@ -111,3 +111,21 @@ button {
     cursor: pointer;
     font-weight: 600;
 }
+
+//CRM Deisgn
+.business-tag {
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.crm-customer-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
