@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus ERP | Suite</title>
+    <link rel="stylesheet" href="./Resources/style.css">
+</head>
+<body>
+
+    <div id="login-overlay" class="overlay">
+        <div class="login-card">
+            <div class="logo-3d">N</div>
+            <h2>Nexus ERP</h2>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button id="login-btn">Sign In</button>
+            <p id="login-error" class="error-text"></p>
+        </div>
+    </div>
+
+    <div id="main-app" class="app-container hidden">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Nexus v1.0</h3>
+            </div>
+            <nav>
+                <div class="nav-item active" data-view="dashboard">Dashboard</div>
+                <div class="nav-item role-restricted" data-role="admin sales" data-view="crm">CRM</div>
+                <div class="nav-item role-restricted" data-role="admin acct" data-view="accounting">Accounting</div>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn">Logout</button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h2 id="view-title">Dashboard</h2>
+                <div class="user-pill">User: <span id="current-user-name"></span></div>
+            </header>
+            
+            <section id="view-container">
+                <div id="dashboard-view" class="view-panel">
+                    <div class="card-3d">
+                        <h3>Welcome to your Nexus Workspace</h3>
+                        <p>Select a module from the sidebar to manage your business operations.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="./Resources/Scripts/users.js"></script>
+</body>
+</html>

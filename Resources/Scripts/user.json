@@ -1,0 +1,7 @@
+{
+  "users": [
+    { "username": "admin", "password": "123", "role": "admin", "fullName": "System Administrator" },
+    { "username": "sales_user", "password": "123", "role": "sales", "fullName": "Sarah Sales" },
+    { "username": "accountant", "password": "123", "role": "acct", "fullName": "Alex Accountant" }
+  ]
+}
