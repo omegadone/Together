@@ -89,3 +89,54 @@ window.onload = () => {
         }
     });
 };
+
+// --- VIEW MANAGER LOGIC ---
+function switchView(viewId) {
+    console.log("Switching to view:", viewId);
+
+    // 1. Hide all view panels
+    const panels = document.querySelectorAll('.view-panel');
+    panels.forEach(panel => {
+        panel.classList.add('hidden');
+    });
+
+    // 2. Show the requested panel
+    const targetPanel = document.getElementById(`${viewId}-view`);
+    if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+    } else {
+        console.error(`Panel #${viewId}-view not found!`);
+    }
+
+    // 3. Update Sidebar Active State
+    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+    const activeNav = document.querySelector(`[data-view="${viewId}"]`);
+    if (activeNav) activeNav.classList.add('active');
+
+    // 4. Update the Header Title
+    const titleMap = {
+        'dashboard': 'Dashboard',
+        'crm': 'Customer Relations',
+        'accounting': 'Accounting'
+    };
+    document.getElementById('view-title').innerText = titleMap[viewId] || "Nexus ERP";
+}
+
+// --- INITIALIZE CLICK EVENTS ---
+function initNavigation() {
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const view = item.getAttribute('data-view');
+            switchView(view);
+        });
+    });
+}
+
+// Update your window.onload to include initNavigation
+window.onload = () => {
+    loadUserData().then(() => {
+        initNavigation(); // <--- THIS IS THE KEY
+        initAppListeners(); // Logout button
+        if (sessionStorage.getItem('session')) startApp();
+    });
+};
