@@ -4,7 +4,7 @@ let userDatabase = [];
 // 1. Fetch the user data on load
 async function loadUserData() {
     try {
-        const response = await fetch('users.json');
+        const response = await fetch('user.json');
         const data = await response.json();
         userDatabase = data.users;
         console.log("User database loaded.");
