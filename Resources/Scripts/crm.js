@@ -17,53 +17,51 @@ async function loadCRMData() {
 
 // 2. The Detail View Function (Attached to Window for Global Access)
 window.viewCustomerDetails = function(customerId) {
-    console.log("Opening details for customer:", customerId);
+    console.log("!!! Force-loading details for:", customerId);
     
     const customer = crmData.customers.find(c => c.id === customerId);
-    if (!customer) return;
-
     const business = crmData.businesses.find(b => b.id === customer.businessId) || { name: "Private Client", address: "N/A" };
     
     const detailsContent = document.getElementById('details-content');
     const placeholder = document.getElementById('details-placeholder');
     
-    if (placeholder) placeholder.classList.add('hidden');
+    // 1. Force the layout visibility
+    if (placeholder) placeholder.style.display = 'none';
     if (detailsContent) {
+        detailsContent.style.display = 'block'; // Direct style override
         detailsContent.classList.remove('hidden');
+        
+        // 2. Inject the HTML
         detailsContent.innerHTML = `
-            <div class="details-header">
-                <h2>${customer.name}</h2>
+            <div class="details-header" style="border-bottom: 2px solid var(--accent); padding-bottom: 10px;">
+                <h2 style="margin:0;">${customer.name}</h2>
                 <span class="biz-badge">${business.name}</span>
             </div>
             
-            <div class="details-grid">
+            <div class="details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
                 <div class="info-group">
-                    <h4>Contact Info</h4>
+                    <h4>Contact Information</h4>
                     <p><strong>Email:</strong> ${customer.email}</p>
                     <p><strong>Phone:</strong> ${customer.phone}</p>
-                    <p><strong>Address:</strong> ${business.address}</p>
+                    <p><strong>Business Address:</strong><br>${business.address}</p>
                 </div>
 
                 <div class="history-section">
                     <h4>Order History</h4>
-                    <table class="nexus-table">
-                        <thead>
-                            <tr><th>ID</th><th>Date</th><th>Amount</th><th>Status</th></tr>
-                        </thead>
-                        <tbody>
-                            ${customer.orderHistory.map(o => `
-                                <tr>
-                                    <td>${o.orderId}</td>
-                                    <td>${o.date}</td>
-                                    <td>$${o.amount}</td>
-                                    <td><span class="status-tag">${o.status}</span></td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
+                    <div style="background: #f9f9f9; padding: 10px; border-radius: 8px;">
+                        ${customer.orderHistory.map(o => `
+                            <div style="border-bottom: 1px solid #ddd; padding: 5px 0;">
+                                <strong>${o.orderId}</strong> - ${o.date} - $${o.amount} 
+                                <span style="font-size: 0.8rem; color: var(--accent);">(${o.status})</span>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
             </div>
         `;
+        console.log("HTML Injection Complete.");
+    } else {
+        console.error("CRITICAL: The element #details-content was not found in the DOM.");
     }
 };
 
