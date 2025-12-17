@@ -53,10 +53,25 @@
                 </div>
 
                 <div id="crm-view" class="view-panel hidden">
-                    <div id="crm-content">
+                    <div class="crm-layout" style="display: flex; gap: 20px; align-items: flex-start;">
+
+                        <div class="crm-sidebar"
+                            style="flex: 1; max-width: 350px; background: white; padding: 20px; border-radius: 15px; box-shadow: var(--shadow-3d);">
+                            <h3>Customers</h3>
+                            <hr>
+                            <div id="crm-content"></div>
+                        </div>
+
+                        <div id="crm-details" class="card-3d" style="flex: 2; min-height: 500px; padding: 30px;">
+                            <div id="details-placeholder">
+                                <h3 style="color: #ccc;">Select a customer to view details</h3>
+                            </div>
+                            <div id="details-content" class="hidden">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </section>
         </main>
     </div>
 
