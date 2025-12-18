@@ -70,20 +70,52 @@ window.renderCustomerList = function() {
     const container = document.getElementById('crm-content');
     if (!container) return;
 
-    container.innerHTML = crmData.customers.map(cust => {
-        const biz = crmData.businesses.find(b => b.id === cust.businessId) || { name: "Individual" };
-        return `
-            <div class="card-3d crm-customer-card" onclick="viewCustomerDetails('${cust.id}')">
-                <div>
-                    <strong>${cust.name}</strong>
-                    <br><small>${biz.name}</small>
-                </div>
-                <div style="text-align: right">
-                    <small>${cust.email}</small>
-                </div>
+    container.innerHTML = crmData.customers.map(cust => `
+        <div class="name-card" onclick="viewCustomerDetails('${cust.id}')">
+            ${cust.name}
+        </div>
+    `).join('');
+};
+
+
+window.viewCustomerDetails = function(customerId) {
+    const customer = crmData.customers.find(c => c.id === customerId);
+    const business = crmData.businesses.find(b => b.id === customer.businessId) || { name: "Private Client", address: "N/A" };
+    
+    const modal = document.getElementById('nexus-modal');
+    const modalBody = document.getElementById('modal-body');
+
+    modalBody.innerHTML = `
+        <div class="modal-header">
+            <h2 style="color: var(--primary); margin-bottom: 5px;">${customer.name}</h2>
+            <span class="biz-badge">${business.name}</span>
+        </div>
+        <hr>
+        <div class="modal-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+            <div>
+                <h4>Contact Info</h4>
+                <p><strong>Email:</strong> ${customer.email}</p>
+                <p><strong>Phone:</strong> ${customer.phone}</p>
+                <p><strong>Business Address:</strong><br>${business.address}</p>
             </div>
-        `;
-    }).join('');
+            <div>
+                <h4>Recent Orders</h4>
+                <ul style="list-style: none; padding: 0;">
+                    ${customer.orderHistory.map(o => `
+                        <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                            <strong>${o.orderId}</strong> - $${o.amount} (${o.status})
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        </div>
+    `;
+
+    modal.classList.remove('hidden');
+};
+
+window.closeNexusModal = function() {
+    document.getElementById('nexus-modal').classList.add('hidden');
 };
 
 // Initialize

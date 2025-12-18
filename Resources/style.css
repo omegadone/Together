@@ -113,62 +113,63 @@ button {
 }
 
 /*CRM Deisgn*/
-.business-tag {
-    background: var(--accent);
-    color: white;
-    font-size: 0.75rem;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-left: 10px;
+/* Simple List Style */
+.customer-simple-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    height: 500px;
+    overflow-y: auto;
+    padding: 20px;
 }
 
-.crm-customer-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    cursor: pointer;
-}
-/* CRM Customer List Container */
-#crm-content {
-    height: 500px;            /* Fixed height as requested */
-    overflow-y: auto;         /* Show scrollbar only when needed */
-    padding-right: 10px;      /* Gap so scrollbar doesn't overlap cards */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;               /* Space between cards */
-}
-
-/* Custom Scrollbar Styling (Webkit) */
-#crm-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-#crm-content::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-}
-
-#crm-content::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
-}
-
-/* Ensure cards have enough height to trigger the scroll after ~3 clients */
-.crm-customer-card {
-    min-height: 120px;       /* 3.5 cards will now exceed 500px */
-    flex-shrink: 0;          /* Prevents cards from squishing to fit */
+.name-card {
     background: var(--white);
-    border-left: 5px solid var(--accent);
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
 }
 
-.crm-customer-card:hover {
-    transform: translateX(5px);
+.name-card:hover {
+    transform: translateY(-5px);
+    border-bottom: 3px solid var(--accent);
     box-shadow: var(--shadow-3d);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 36, 99, 0.8); /* Dark primary tint */
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-card {
+    width: 90%;
+    max-width: 700px;
+    background: var(--white);
+    padding: 40px;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--primary);
+    cursor: pointer;
 }

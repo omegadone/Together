@@ -51,28 +51,26 @@
                         <p>Select a module from the sidebar.</p>
                     </div>
                 </div>
-
                 <div id="crm-view" class="view-panel hidden">
-                    <div class="crm-layout" style="display: flex; gap: 20px; align-items: flex-start;">
+                    <div class="module-controls">
+                        <button class="btn-primary" onclick="openAddCustomerModal()">+ Add Customer</button>
+                        <button class="btn-secondary" onclick="openAddBusinessModal()">+ Add Business</button>
+                    </div>
 
-                        <div class="crm-sidebar"
-                            style="flex: 1; max-width: 350px; background: white; padding: 20px; border-radius: 15px; box-shadow: var(--shadow-3d);">
-                            <h3>Customers</h3>
-                            <hr>
-                            <div id="crm-content"></div>
-                        </div>
-
-                        <div id="crm-details" class="card-3d" style="flex: 2; min-height: 500px; padding: 30px;">
-                            <div id="details-placeholder">
-                                <h3 style="color: #ccc;">Select a customer to view details</h3>
-                            </div>
-                            <div id="details-content" class="hidden">
-                            </div>
-                        </div>
-
+                    <div id="crm-content" class="customer-simple-list">
                     </div>
                 </div>
-        </main>
+
+                <div id="nexus-modal" class="modal-overlay hidden">
+                    <div class="modal-card card-3d">
+                        <button class="close-modal" onclick="closeNexusModal()">×</button>
+                        <div id="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </div>
+    </main>
     </div>
 
     <script src="./Resources/Scripts/users.js"></script>
